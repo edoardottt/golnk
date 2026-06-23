@@ -39,7 +39,7 @@ func genDataString(s string) []byte {
 		return nil
 	}
 	buf := new(bytes.Buffer)
-	binary.Write(buf, binary.LittleEndian, uint16(len(s)))
+	_ = binary.Write(buf, binary.LittleEndian, uint16(len(s)))
 	buf.WriteString(s)
 	return buf.Bytes()
 }
@@ -48,7 +48,7 @@ func genDataString(s string) []byte {
 func genIDList(data []byte) []byte {
 	size := uint16(len(data) + 2)
 	buf := new(bytes.Buffer)
-	binary.Write(buf, binary.LittleEndian, size)
+	_ = binary.Write(buf, binary.LittleEndian, size)
 	buf.Write(data)
 	return buf.Bytes()
 }
@@ -232,15 +232,15 @@ func main() {
 	// Assemble final binary file
 	buf := new(bytes.Buffer)
 
-	binary.Write(buf, binary.LittleEndian, headerSize)
+	_ = binary.Write(buf, binary.LittleEndian, headerSize)
 	buf.Write(linkCLSID)
-	binary.Write(buf, binary.LittleEndian, linkFlags)
-	binary.Write(buf, binary.LittleEndian, fileAttributes)
-	buf.Write(make([]byte, 24))                          // CreationTime, AccessTime, WriteTime (8 bytes each)
-	binary.Write(buf, binary.LittleEndian, uint32(0))    // FileSize
-	binary.Write(buf, binary.LittleEndian, uint32(0))    // IconIndex
-	binary.Write(buf, binary.LittleEndian, swShowNormal) // ShowCommand
-	buf.Write(make([]byte, 12))                          // Hotkey (2), Reserved (2), Reserved2 (4), Reserved3 (4)
+	_ = binary.Write(buf, binary.LittleEndian, linkFlags)
+	_ = binary.Write(buf, binary.LittleEndian, fileAttributes)
+	buf.Write(make([]byte, 24))                              // CreationTime, AccessTime, WriteTime (8 bytes each)
+	_ = binary.Write(buf, binary.LittleEndian, uint32(0))    // FileSize
+	_ = binary.Write(buf, binary.LittleEndian, uint32(0))    // IconIndex
+	_ = binary.Write(buf, binary.LittleEndian, swShowNormal) // ShowCommand
+	buf.Write(make([]byte, 12))                              // Hotkey (2), Reserved (2), Reserved2 (4), Reserved3 (4)
 
 	buf.Write(genIDList(idListItems)) // IDLIST
 	buf.Write([]byte{0x00, 0x00})     // TerminalID
