@@ -30,7 +30,7 @@ builds:
       - goos: windows
         goarch: 'arm64'
     binary: '{{ .ProjectName }}'
-    main: ./cmd/csprecon/
+    main: ./main.go
 
 archives:
 - format: zip
