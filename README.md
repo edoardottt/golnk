@@ -65,7 +65,7 @@ golnk -l "C:\Python3\python.exe" -a "script.py" -w "D:\Projects\PythonSrc" -o ru
 
 Detailed changes for each release are documented in the [release notes](https://github.com/edoardottt/golnk/releases).
 
-## Contributing 🛠
+## Contributing 🛠️
 
 Just open an [issue](https://github.com/edoardottt/golnk/issues) / [pull request](https://github.com/edoardottt/golnk/pulls).
 
